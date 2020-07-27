@@ -1,0 +1,74 @@
+{
+  "name": "@ali/miniprogram-adapter",
+  "version": "2.3.2",
+  "description": "adapter of miniprogram",
+  "keywords": [
+    "webgl",
+    "adapter",
+    "miniprogram"
+  ],
+  "authors": [
+    "kevin.hs <kevin.hs@alipay.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter"
+  },
+  "bugs": {
+    "url": "http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/issues"
+  },
+  "license": "MIT",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "test-cov": "jest --coverage",
+    "dev": "rollup -cw",
+    "build": "npm run lint && rollup -c",
+    "ci": "npm run lint && npm run test-cov",
+    "lint": "eslint src --fix --ext .ts,.tsx",
+    "b:types": "tsc --emitDeclarationOnly"
+  },
+  "main": "dist/main.js",
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.x",
+    "@babel/plugin-proposal-class-properties": "^7.x",
+    "@babel/plugin-proposal-object-rest-spread": "^7.x",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.x",
+    "@types/jest": "^24.0.21",
+    "@typescript-eslint/eslint-plugin": "^3.x",
+    "@typescript-eslint/parser": "^3.x",
+    "babel-jest": "^24.8.0",
+    "eslint": "^7.x",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^2.2.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^10.0.0-1",
+    "prettier": "^2.0.0",
+    "rollup": "^1.11.3",
+    "typescript": "^3.9.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "ci": {
+    "type": "gitlab",
+    "version": "alinode=3.11.7"
+  }
+}
