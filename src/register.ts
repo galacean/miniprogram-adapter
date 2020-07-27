@@ -45,7 +45,7 @@ function registerCanvas(c, id: string) {
     document.removeEventListener(type, listener);
   };
 
-  canvas.dispatchEvent = function (event: Event) {
+  canvas.dispatchEvent = function (event: any) {
     document.dispatchEvent(event);
   };
 }
@@ -89,7 +89,7 @@ function registerCanvas2D(ctx, id: string) {
     document.removeEventListener(type, listener);
   };
 
-  canvas2D.dispatchEvent = function (event: Event) {
+  canvas2D.dispatchEvent = function (event: any) {
     document.dispatchEvent(event);
   };
 }
