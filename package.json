@@ -28,7 +28,7 @@
     "lint": "eslint src --fix --ext .ts,.tsx",
     "b:types": "tsc --emitDeclarationOnly"
   },
-  "main": "dist/main.js",
+  "main": "dist/miniprogram.js",
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"
   },
