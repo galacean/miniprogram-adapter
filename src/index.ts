@@ -44,7 +44,9 @@ let window = {
   },
   dispatchEvent(event: Event) {
     document.dispatchEvent(event);
-  }
+  },
+  innerWidth: screen.availWidth,
+  innerHeight: screen.availHeight,
 };
 
 export {
