@@ -151,16 +151,19 @@ export default class XMLHttpRequest extends EventTarget {
         _triggerEvent.call(this, "loadend");
       };
 
-      const onFail = ({ message: errMsg }) => {
+      const onFail = (e) => {
+        const errMsg = e.message || e.errorMessage;
         // TODO 规范错误
         if (!errMsg) {
           return;
         }
         if (errMsg.indexOf("abort") !== -1) {
-          _triggerEvent.call(this, "abort");
+          _triggerEvent.call(this, "abort", {
+            message: errMsg + this._url
+          });
         } else {
           _triggerEvent.call(this, "error", {
-            message: errMsg
+            message: errMsg + this._url
           });
         }
         _triggerEvent.call(this, "loadend");
