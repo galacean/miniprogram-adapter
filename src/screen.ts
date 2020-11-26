@@ -1,6 +1,6 @@
 declare let my: any;
 const { screenWidth, screenHeight, windowWidth, windowHeight } = my.getSystemInfoSync();
-export default {
+export const screen = {
   width: screenWidth,
   height: screenHeight,
   availWidth: windowWidth,

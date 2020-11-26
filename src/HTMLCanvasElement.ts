@@ -1,1 +1,1 @@
-export default Object;
+export const HTMLCanvasElement = Object;

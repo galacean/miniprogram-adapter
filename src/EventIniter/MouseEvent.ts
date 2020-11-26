@@ -1,5 +1,5 @@
 import Event from "../Event";
-import document from "../document";
+import { document } from "../document";
 
 class MouseEvent extends Event {
   constructor(type) {

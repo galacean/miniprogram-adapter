@@ -1,4 +1,4 @@
-let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
 function InvalidCharacterError(message) {
   this.message = message;
@@ -7,7 +7,7 @@ function InvalidCharacterError(message) {
 InvalidCharacterError.prototype = new Error();
 InvalidCharacterError.prototype.name = "InvalidCharacterError";
 
-export default function (input) {
+export function atob (input) {
   let str = String(input).replace(/=+$/, "");
   if (str.length % 4 === 1) {
     throw new InvalidCharacterError("'atob' failed: The string to be decoded is not correctly encoded.");

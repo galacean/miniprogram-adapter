@@ -1,6 +1,6 @@
 import HTMLElement from "./HTMLElement";
-import HTMLVideoElement from "./HTMLVideoElement";
-import Image from "./Image";
+import { HTMLVideoElement } from "./HTMLVideoElement";
+import { Image } from "./Image";
 import { getCanvas, getCanvas2D } from "./register";
 import Event from "./Event";
 
@@ -44,7 +44,7 @@ class DocumentElement extends HTMLElement {
 
 const events = {};
 
-const document = {
+export const document = {
   readyState: "complete",
   visibilityState: "visible", // 'visible' , 'hidden'
   hidden: false,
@@ -190,5 +190,3 @@ const document = {
 document.documentElement = new DocumentElement();
 document.head = new HTMLElement("head");
 document.body = new Body();
-
-export default document;

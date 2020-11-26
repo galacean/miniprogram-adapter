@@ -1,7 +1,7 @@
 import { getCanvas } from "./register";
 import * as Mixin from "./util/mixin";
 
-export default class {
+export class Image {
   constructor() {
     let canvas = getCanvas();
 

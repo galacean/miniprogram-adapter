@@ -1,2 +1,2 @@
 // 暂不支持
-export default null;
+export const performance = null;

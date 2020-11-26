@@ -1,6 +1,6 @@
 import EventTarget from "./EventTarget";
 
-export default class Node extends EventTarget {
+export class Node extends EventTarget {
   childNodes: Array<any>;
 
   constructor() {

@@ -1,6 +1,6 @@
 import devicePixelRatio from "./devicePixelRatio";
 import * as Mixin from "./util/mixin";
-import document from "./document";
+import { document } from "./document";
 
 declare let my: any;
 

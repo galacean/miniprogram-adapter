@@ -1,6 +1,6 @@
 import Event from "../Event";
 import { getCanvas } from "../register";
-import document from "../document";
+import { document } from "../document";
 
 class PointerEvent extends Event {
   buttons: number;

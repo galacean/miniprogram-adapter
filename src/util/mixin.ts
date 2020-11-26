@@ -1,7 +1,7 @@
-import screen from "../screen";
+import { screen } from "../screen";
 
 const { availWidth: innerWidth, availHeight: innerHeight } = screen;
-import document from "../document";
+import { document } from "../document";
 
 export function parentNode(obj, level?: number) {
   if (!("parentNode" in obj)) {
