@@ -23,6 +23,7 @@
     "test": "jest",
     "test-cov": "jest --coverage",
     "dev": "rollup -cw",
+    "watch": "rollup -cw",
     "build": "rollup -c",
     "ci": "npm run lint && npm run test-cov",
     "lint": "eslint src --fix --ext .ts,.tsx",

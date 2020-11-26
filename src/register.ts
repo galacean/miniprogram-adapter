@@ -12,15 +12,6 @@ let canvas2D: any = {};
 function registerCanvas(c, id: string) {
   canvas = c;
   canvas.id = id;
-  const { platform } = my.getSystemInfoSync();
-  // todo bug : 小程序 Android width/height 和 iOS 不一致
-  if (platform === "iOS") {
-    canvas.clientWidth = c.width / devicePixelRatio;
-    canvas.clientHeight = c.height / devicePixelRatio;
-  } else {
-    canvas.clientWidth = c.width;
-    canvas.clientHeight = c.height;
-  }
 
   if (!("tagName" in canvas)) {
     canvas.tagName = "CANVAS";
