@@ -1,3 +1,7 @@
+## [0.0.8](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.7...v0.0.8) (2020-11-26)
+
+
+
 ## [0.0.7](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.6...v0.0.7) (2020-10-29)
 
 
