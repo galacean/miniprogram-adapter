@@ -1,3 +1,10 @@
+## 0.0.8
+
+| name | install size | reuqire time |
+| ---  | --- | --- |
+| @ali/miniprogram-adapter@0.0.8 | 376KB | 2.620ms |
+
+
 ## 0.0.7
 
 | name | install size | reuqire time |
