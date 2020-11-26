@@ -117,8 +117,8 @@ export class XMLHttpRequest extends EventTarget {
       const header = _requestHeader.get("requestHeader");
       const responseType = this._responseType;
 
-      if(contentTypes[responseType]) {
-        header['content-type'] = contentTypes[responseType]
+      if (contentTypes[responseType]) {
+        header["content-type"] = contentTypes[responseType];
       }
 
       delete this.response;
