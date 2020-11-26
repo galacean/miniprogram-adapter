@@ -1,9 +1,9 @@
 import * as Mixin from "./util/mixin";
-import Element from "./Element";
+import { Element } from "./Element";
 
 function noop() {}
 
-export default class HTMLElement extends Element {
+export class HTMLElement extends Element {
   className: string;
   children: Array<any>;
   focus: any;

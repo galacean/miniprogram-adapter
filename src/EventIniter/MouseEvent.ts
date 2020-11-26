@@ -1,4 +1,4 @@
-import Event from "../Event";
+import { Event } from "../Event";
 import { document } from "../document";
 
 class MouseEvent extends Event {

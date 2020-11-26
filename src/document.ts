@@ -1,8 +1,8 @@
-import HTMLElement from "./HTMLElement";
+import { HTMLElement } from "./HTMLElement";
 import { HTMLVideoElement } from "./HTMLVideoElement";
 import { Image } from "./Image";
 import { getCanvas, getCanvas2D } from "./register";
-import Event from "./Event";
+import { Event } from "./Event";
 
 class Body extends HTMLElement {
   constructor() {

@@ -1,12 +1,12 @@
 import { atob } from "./atob";
 import devicePixelRatio from "./devicePixelRatio";
 import { document } from "./document";
-import Element from "./Element";
-import Event from "./Event";
+import { Element } from "./Element";
+import { Event } from "./Event";
 import EventTarget from "./EventTarget";
 import { HTMLCanvasElement } from "./HTMLCanvasElement";
-import HTMLElement from "./HTMLElement";
-import HTMLMediaElement from "./HTMLMediaElement";
+import { HTMLElement } from "./HTMLElement";
+import { HTMLMediaElement } from "./HTMLMediaElement";
 import { HTMLVideoElement } from "./HTMLVideoElement";
 import { Image } from "./Image";
 import { navigator } from "./navigator";

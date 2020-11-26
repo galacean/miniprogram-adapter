@@ -1,6 +1,6 @@
 import { Node } from "./Node";
 
-export default class Element extends Node {
+export class Element extends Node {
   className: string;
   children: Array<any>;
 

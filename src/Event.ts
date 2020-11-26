@@ -1,4 +1,4 @@
-export default class Event {
+export class Event {
   cancelBubble: boolean;
   cancelable: boolean;
   target: any;
