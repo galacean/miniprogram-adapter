@@ -25,7 +25,8 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: "cjs"
+      format: "umd",
+      name: "__MiniAdapter__"
     }
   ]
 };

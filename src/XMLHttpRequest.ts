@@ -4,6 +4,11 @@ declare let my: any;
 const _requestHeader = new Map();
 const _responseHeader = new Map();
 const _requestTask = new Map();
+const contentTypes = {
+  json: "application/json",
+  text: "application/text",
+  arraybuffer: "application/octet-stream"
+};
 
 function _triggerEvent(type, event = { target: this }) {
   if (typeof this[`on${type}`] === "function") {
@@ -16,7 +21,7 @@ function _changeReadyState(readyState, event = { readyState }) {
   _triggerEvent.call(this, "readystatechange", event);
 }
 
-export default class XMLHttpRequest extends EventTarget {
+export class XMLHttpRequest extends EventTarget {
   static UNSEND: number;
   static OPENED: number;
   static HEADERS_RECEIVED: number;
@@ -112,12 +117,8 @@ export default class XMLHttpRequest extends EventTarget {
       const header = _requestHeader.get("requestHeader");
       const responseType = this._responseType;
 
-      let encoding;
-
-      if (responseType === "arraybuffer") {
-        // encoding = 'binary'
-      } else {
-        encoding = "utf8";
+      if(contentTypes[responseType]) {
+        header['content-type'] = contentTypes[responseType]
       }
 
       delete this.response;

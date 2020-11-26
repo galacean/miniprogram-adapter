@@ -13,7 +13,7 @@ import navigator from "./navigator";
 import Node from "./Node";
 import { requestAnimationFrame, cancelAnimationFrame } from "./requestAnimationFrame";
 import screen from "./screen";
-import XMLHttpRequest from "./XMLHttpRequest";
+import { XMLHttpRequest } from "./XMLHttpRequest";
 import performance from "./performance";
 import WebGL2RenderingContext from "./WebGL2";
 
