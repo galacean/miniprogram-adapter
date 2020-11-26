@@ -7,7 +7,7 @@ function InvalidCharacterError(message) {
 InvalidCharacterError.prototype = new Error();
 InvalidCharacterError.prototype.name = "InvalidCharacterError";
 
-export function atob (input) {
+export function atob(input) {
   let str = String(input).replace(/=+$/, "");
   if (str.length % 4 === 1) {
     throw new InvalidCharacterError("'atob' failed: The string to be decoded is not correctly encoded.");
