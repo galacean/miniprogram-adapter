@@ -1,4 +1,4 @@
-import {HTMLMediaElement} from "./HTMLMediaElement";
+import { HTMLMediaElement } from "./HTMLMediaElement";
 
 export class HTMLVideoElement extends HTMLMediaElement {
   constructor() {

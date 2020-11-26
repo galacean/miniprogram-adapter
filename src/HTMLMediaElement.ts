@@ -1,4 +1,4 @@
-import {HTMLElement} from "./HTMLElement";
+import { HTMLElement } from "./HTMLElement";
 
 export class HTMLMediaElement extends HTMLElement {
   constructor(tagName: string) {
