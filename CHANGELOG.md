@@ -1,3 +1,12 @@
+## [0.0.11](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.9...v0.0.11) (2020-12-14)
+
+
+### Features
+
+* support cancel requestAnimationFrame ([68a6357](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/68a635752821242dc45412bde86b16d86fbdd600))
+
+
+
 ## [0.0.9](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.8...v0.0.9) (2020-11-26)
 
 
