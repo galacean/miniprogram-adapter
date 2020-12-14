@@ -32,6 +32,7 @@ const window = {
   navigator,
   Node,
   requestAnimationFrame,
+  cancelAnimationFrame,
   screen,
   XMLHttpRequest,
   performance,
