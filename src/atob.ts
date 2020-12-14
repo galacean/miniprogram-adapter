@@ -32,3 +32,31 @@ export function atob(input) {
   }
   return output;
 }
+
+export function btoa(string: string) {
+  string = String(string);
+  var bitmap,
+    a,
+    b,
+    c,
+    result = "",
+    i = 0,
+    rest = string.length % 3; // To determine the final padding
+
+  for (; i < string.length; ) {
+    if ((a = string.charCodeAt(i++)) > 255 || (b = string.charCodeAt(i++)) > 255 || (c = string.charCodeAt(i++)) > 255)
+      throw new TypeError(
+        "Failed to execute 'btoa' on 'Window': The string to be encoded contains characters outside of the Latin1 range."
+      );
+
+    bitmap = (a << 16) | (b << 8) | c;
+    result +=
+      chars.charAt((bitmap >> 18) & 63) +
+      chars.charAt((bitmap >> 12) & 63) +
+      chars.charAt((bitmap >> 6) & 63) +
+      chars.charAt(bitmap & 63);
+  }
+
+  // If there's need of padding, replace the last 'A's with equal signs
+  return rest ? result.slice(0, rest - 3) + "===".substring(rest) : result;
+}
