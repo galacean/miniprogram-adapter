@@ -30,7 +30,7 @@
 
 2. 利用 @rollup/plugin-inject 在打包的过程中注入适配对象到代码中。
 
-3. (可选) 若使用的 monorepo 仓库，可使用 @rollup/plugin-modify 替换引用模块。
+3. (可选) 若使用的 monorepo 仓库，可使用 @rollup/plugin-modify 替换引用模块。l
 
 下面是小程序 `rollup.miniprogram.plugin.js` 示例可以供参考：
 

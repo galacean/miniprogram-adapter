@@ -1,4 +1,4 @@
-import { atob } from "./atob";
+import { atob, btoa } from "./atob";
 import devicePixelRatio from "./devicePixelRatio";
 import { document } from "./document";
 import { Element } from "./Element";
@@ -16,9 +16,11 @@ import { screen } from "./screen";
 import { XMLHttpRequest } from "./XMLHttpRequest";
 import { performance } from "./performance";
 import { WebGL2RenderingContext } from "./WebGL2";
+import { URL } from "./url";
 
 const window = {
   atob,
+  btoa,
   devicePixelRatio,
   document,
   Element,
@@ -36,6 +38,7 @@ const window = {
   screen,
   XMLHttpRequest,
   performance,
+  URL,
   WebGL2RenderingContext,
   addEventListener(type, listener, options = {}) {
     document.addEventListener(type, listener, options);
@@ -51,6 +54,8 @@ const window = {
 };
 
 export {
+  btoa,
+  URL,
   window,
   atob,
   devicePixelRatio,
