@@ -66,7 +66,7 @@ export const document = {
   createElement(tagName) {
     tagName = tagName.toLowerCase();
     if (tagName === "canvas") {
-      return getCanvas2D();
+      return getCanvas();
     } else if (tagName === "img") {
       return new Image();
     } else if (tagName === "video") {
