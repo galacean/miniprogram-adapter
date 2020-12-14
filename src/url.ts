@@ -7,7 +7,7 @@ export class URL {
    * @param blob
    */
   static createObjectURL(blob: Blob) {
-    const buffer = blob.arraybuffer[0];
+    const buffer = blob.buffers[0];
     const type = blob.type;
     const base64 = _arrayBufferToBase64(buffer);
     const prefix = `data:${type};base64, `;
