@@ -17,11 +17,13 @@ import { XMLHttpRequest } from "./XMLHttpRequest";
 import { performance } from "./performance";
 import { WebGL2RenderingContext } from "./WebGL2";
 import { URL } from "./url";
+import { Blob } from "./blob";
 
 const window = {
   atob,
   btoa,
   devicePixelRatio,
+  Blob,
   document,
   Element,
   Event,
@@ -56,6 +58,7 @@ const window = {
 export {
   btoa,
   URL,
+  Blob,
   window,
   atob,
   devicePixelRatio,
