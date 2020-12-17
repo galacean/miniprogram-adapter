@@ -16,6 +16,7 @@ import { screen } from "./screen";
 import { XMLHttpRequest } from "./XMLHttpRequest";
 import { performance } from "./performance";
 import { WebGL2RenderingContext } from "./WebGL2";
+import { WebGLRenderingContext } from "./WebGL";
 import { URL } from "./url";
 import { Blob } from "./blob";
 
@@ -78,6 +79,7 @@ export {
   screen,
   XMLHttpRequest,
   performance,
+  WebGLRenderingContext,
   WebGL2RenderingContext
 };
 
