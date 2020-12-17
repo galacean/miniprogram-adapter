@@ -13,6 +13,17 @@ export class URL {
     const prefix = `data:${type};base64, `;
     return prefix + base64;
   }
+
+  public href: string;
+
+  // todo: 完善URL对象
+  constructor(url, host = '') {
+    if (url.indexOf('http://') == 0 || url.indexOf('https://') == 0) {
+      this.href = url;
+      return;
+    }
+    this.href = host + url;
+  }
 }
 
 function _arrayBufferToBase64(buffer) {
