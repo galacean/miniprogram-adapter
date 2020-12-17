@@ -17,8 +17,8 @@ export class URL {
   public href: string;
 
   // todo: 完善URL对象
-  constructor(url, host = '') {
-    if (url.indexOf('http://') == 0 || url.indexOf('https://') == 0) {
+  constructor(url, host = "") {
+    if (url.indexOf("http://") == 0 || url.indexOf("https://") == 0) {
       this.href = url;
       return;
     }
