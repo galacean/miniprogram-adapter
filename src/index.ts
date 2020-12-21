@@ -20,6 +20,7 @@ import { WebGLRenderingContext } from "./WebGL";
 import { URL } from "./url";
 import { Blob } from "./blob";
 import { ImageData } from "./ImageData";
+import { location } from "./location";
 
 const window = {
   atob,
@@ -82,7 +83,8 @@ export {
   performance,
   WebGLRenderingContext,
   WebGL2RenderingContext,
-  ImageData
+  ImageData,
+  location
 };
 
 export { registerCanvas, registerCanvas2D } from "./register";
