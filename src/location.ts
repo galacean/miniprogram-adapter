@@ -1,3 +1,3 @@
 export let location = {
-    href: "",
+  href: ""
 };
