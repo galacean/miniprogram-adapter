@@ -16,8 +16,11 @@ import { screen } from "./screen";
 import { XMLHttpRequest } from "./XMLHttpRequest";
 import { performance } from "./performance";
 import { WebGL2RenderingContext } from "./WebGL2";
+import { WebGLRenderingContext } from "./WebGL";
 import { URL } from "./url";
 import { Blob } from "./blob";
+import { ImageData } from "./ImageData";
+import { location } from "./location";
 
 const window = {
   atob,
@@ -78,7 +81,10 @@ export {
   screen,
   XMLHttpRequest,
   performance,
-  WebGL2RenderingContext
+  WebGLRenderingContext,
+  WebGL2RenderingContext,
+  ImageData,
+  location
 };
 
 export { registerCanvas, registerCanvas2D } from "./register";
