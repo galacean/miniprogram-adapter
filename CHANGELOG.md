@@ -1,3 +1,16 @@
+## [0.0.13](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.12...v0.0.13) (2020-12-21)
+
+
+### Bug Fixes
+
+* 小程序环境没有ImageData ([3f8499a](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/3f8499a60212d04f72619faffd503e3102dab3d2))
+* 小程序环境没有location ([ab8bc22](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/ab8bc2288873269958e44c4a16ce039258b02cf5))
+* 小程序环境没有URL ([1bf2444](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/1bf2444c212de5eb85764ee9f1911db4c0cd573a))
+* 小程序环境没有WebGLRenderingContext ([827ab12](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/827ab12e85b7601d377d5da3c1ab116e6311bd44))
+* 小程序环境没有WebGLRenderingContext ([2b60395](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/2b603957fb9f377a9449e10a5501d0be4831c0ec))
+
+
+
 ## [0.0.12](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.11...v0.0.12) (2020-12-14)
 
 
