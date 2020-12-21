@@ -9,6 +9,7 @@ export class Image {
 
     if (!("tagName" in image)) {
       image.tagName = "IMG";
+      image.__proto__ = Image.prototype;
     }
 
     Mixin.parentNode(image);
