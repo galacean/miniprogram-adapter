@@ -1,6 +1,6 @@
 {
   "name": "@ali/miniprogram-adapter",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "adapter of miniprogram",
   "keywords": [
     "webgl",
