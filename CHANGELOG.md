@@ -1,3 +1,12 @@
+## [0.0.14](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.13...v0.0.14) (2020-12-22)
+
+
+### Bug Fixes
+
+* 真机上prototype错误 ([df5b58b](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/commit/df5b58b2c96276136fa97681a5338a8802f273ad))
+
+
+
 ## [0.0.13](http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/compare/v0.0.12...v0.0.13) (2020-12-21)
 
 
