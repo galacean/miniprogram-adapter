@@ -137,6 +137,8 @@ export class XMLHttpRequest extends EventTarget {
         this.response = data;
 
         if (data instanceof ArrayBuffer) {
+          //TODO temporary solution, fix native gc error.
+          this.response = data.slice(0);
           Object.defineProperty(this, "responseText", {
             enumerable: true,
             configurable: true,
