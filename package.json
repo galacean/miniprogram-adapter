@@ -21,6 +21,9 @@
     "lint": "eslint src --fix --ext .ts,.tsx",
     "b:types": "tsc --emitDeclarationOnly"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "main": "dist/miniprogram.js",
   "devDependencies": {
     "@babel/core": "^7.x",
