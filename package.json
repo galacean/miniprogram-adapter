@@ -10,14 +10,6 @@
   "authors": [
     "kevin.hs <kevin.hs@alipay.com>"
   ],
-  "repository": {
-    "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter"
-  },
-  "bugs": {
-    "url": "http://gitlab.alibaba-inc.com/ali-interaction/miniprogram-adapter/issues"
-  },
-  "license": "MIT",
   "types": "types/index.d.ts",
   "scripts": {
     "test": "jest",
@@ -30,9 +22,6 @@
     "b:types": "tsc --emitDeclarationOnly"
   },
   "main": "dist/miniprogram.js",
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "devDependencies": {
     "@babel/core": "^7.x",
     "@babel/plugin-proposal-class-properties": "^7.x",
