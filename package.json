@@ -1,6 +1,6 @@
 {
   "name": "@oasis-engine/miniprogram-adapter",
-  "version": "0.0.14",
+  "version": "0.0.1",
   "description": "adapter of miniprogram",
   "keywords": [
     "webgl",
