@@ -44,6 +44,7 @@ export class XMLHttpRequest extends EventTarget {
   statusText: string;
   upload: any;
   withCredentials: boolean;
+  timeout: number;
 
   _url: string;
   _method: string;
@@ -176,6 +177,7 @@ export class XMLHttpRequest extends EventTarget {
         data,
         url,
         method: this._method,
+        timeout: this.timeout ? this.timeout : 30000,
         headers: header,
         dataType: responseType,
         success: onSuccess,
