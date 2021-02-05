@@ -129,11 +129,10 @@ export class XMLHttpRequest extends EventTarget {
         status = status === undefined ? 200 : status;
 
         try {
-          if ((data == null) || (data instanceof ArrayBuffer && data.byteLength == 0)) {
+          if (data == null || (data instanceof ArrayBuffer && data.byteLength == 0)) {
             status = 404;
           }
-        } catch (e) {
-        }
+        } catch (e) {}
 
         this.status = status;
         if (headers) {
