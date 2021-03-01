@@ -44,6 +44,7 @@ export class XMLHttpRequest extends EventTarget {
   statusText: string;
   upload: any;
   withCredentials: boolean;
+  timeout: number;
 
   _url: string;
   _method: string;
@@ -126,6 +127,13 @@ export class XMLHttpRequest extends EventTarget {
 
       const onSuccess = ({ data, status, headers }) => {
         status = status === undefined ? 200 : status;
+
+        try {
+          if (data == null || (data instanceof ArrayBuffer && data.byteLength == 0)) {
+            status = 404;
+          }
+        } catch (e) {}
+
         this.status = status;
         if (headers) {
           _responseHeader.set("responseHeader", headers);
@@ -176,6 +184,7 @@ export class XMLHttpRequest extends EventTarget {
         data,
         url,
         method: this._method,
+        timeout: this.timeout ? this.timeout : 30000,
         headers: header,
         dataType: responseType,
         success: onSuccess,
