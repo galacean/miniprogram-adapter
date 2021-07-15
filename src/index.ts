@@ -87,6 +87,13 @@ export {
   location
 };
 
+export {
+  $window: window,
+  $document: document,
+  $XMLHttpRequest: XMLHttpRequest,
+  $location: location
+}
+
 export { registerCanvas, registerCanvas2D } from "./register";
 
 export * from "./EventIniter/index";
