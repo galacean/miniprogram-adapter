@@ -38,7 +38,7 @@
 import inject from 'rollup-plugin-inject';
 import modify from 'rollup-plugin-modify';
 
-const module = '@alipay/o3-adapter-miniprogram';
+const module = '@oasis-engine/miniprogram-adapter';
 
 function register(name) {
   return [module, name];
@@ -74,8 +74,8 @@ adapterArray.forEach(name => {
 export default [
   inject(adapterVars),
   modify({
-    find: /@alipay\/(o3[\w-]*)/g,
-    replace: (match, moduleName) => `@alipay/${moduleName}/dist/miniprogram`
+    find: /@oasis-engine\/([\w-]*)/g,
+    replace: (match, moduleName) => `@oasis-engine/${moduleName}/dist/miniprogram`
   }),
 ];
 ```
