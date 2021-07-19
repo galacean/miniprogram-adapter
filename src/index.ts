@@ -86,7 +86,7 @@ export {
   ImageData,
   location
 };
-export { window as $window, window as $document, XMLHttpRequest as $XMLHttpRequest, location as $location };
+export { window as $window, document as $document, XMLHttpRequest as $XMLHttpRequest, location as $location };
 
 export { registerCanvas, registerCanvas2D } from "./register";
 
