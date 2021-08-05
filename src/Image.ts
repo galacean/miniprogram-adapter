@@ -15,6 +15,15 @@ export class Image {
     Mixin.parentNode(image);
     Mixin.classList(image);
 
+    Object.assign(image, {
+      addEventListener(name, cb) {
+        image[`on${name}`] = cb.bind(image);
+      },
+      removeEventListener(name) {
+        image[`on${name}`] = null;
+      }
+    });
+
     return image;
   }
 }
