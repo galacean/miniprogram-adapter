@@ -44,6 +44,7 @@ const window = {
   XMLHttpRequest,
   performance,
   URL,
+  WebGLRenderingContext,
   WebGL2RenderingContext,
   addEventListener(type, listener, options = {}) {
     document.addEventListener(type, listener, options);
