@@ -1,15 +1,18 @@
 import devicePixelRatio from "./devicePixelRatio";
-import * as Mixin from "./util/mixin";
 import { document } from "./document";
+import { dispatchTouchCancel, dispatchTouchEnd, dispatchTouchMove, dispatchTouchStart } from "./EventIniter/TouchEvent";
+import { $window } from "./index";
+import * as Mixin from "./util/mixin";
 
 declare let my: any;
 
 /**同步和异步都需要的数据*/
 let canvas: any = {};
 let canvas2D: any = {};
+let _isMiniGame = false;
 
 /**异步注册3Dcanvas*/
-function registerCanvas(c, id: string) {
+function registerCanvas(c, id: string = "canvas") {
   canvas = c;
   canvas.id = id;
 
@@ -42,7 +45,7 @@ function registerCanvas(c, id: string) {
 }
 
 /**异步注册2Dcanvas*/
-function registerCanvas2D(ctx, id: string) {
+function registerCanvas2D(ctx, id: string = "canvas2D") {
   const width = 1024;
   const height = 1024;
   canvas2D = {
@@ -85,6 +88,26 @@ function registerCanvas2D(ctx, id: string) {
   };
 }
 
+/** 注册小游戏 */
+function registerMiniGame() {
+  _isMiniGame = true;
+
+  for (const key in $window) {
+    //  @ts-ignore
+    if (!window[key]) window[key] = $window[key];
+  }
+
+  // 绑定小游戏事件
+  my.onTouchStart(dispatchTouchStart);
+  my.onTouchMove(dispatchTouchMove);
+  my.onTouchEnd(dispatchTouchEnd);
+  my.onTouchCancel(dispatchTouchCancel);
+}
+
+function isMiniGame(): boolean {
+  return _isMiniGame;
+}
+
 /**异步获取3Dcanvas*/
 function getCanvas() {
   return canvas;
@@ -95,4 +118,4 @@ function getCanvas2D() {
   return canvas2D;
 }
 
-export { registerCanvas, registerCanvas2D, getCanvas, getCanvas2D };
+export { registerCanvas, registerCanvas2D, getCanvas, getCanvas2D, registerMiniGame, isMiniGame };
