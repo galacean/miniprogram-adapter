@@ -1,6 +1,6 @@
 import { document } from "../document";
 import { Event } from "../Event";
-import { getCanvas, isMiniGame } from "../register";
+import { getCanvas } from "../register";
 
 class TouchEvent extends Event {
   touches: Array<any>;
@@ -36,11 +36,7 @@ function eventHandlerFactory(type) {
   return (rawEvent) => {
     const event = new TouchEvent(type);
 
-    if (isMiniGame()) {
-      event.changedTouches = rawEvent.touches;
-    } else {
-      event.changedTouches = rawEvent.changedTouches;
-    }
+    event.changedTouches = rawEvent.changedTouches || rawEvent.touches;
     event.touches = rawEvent.touches;
     event.targetTouches = Array.prototype.slice.call(rawEvent.touches);
     event.timeStamp = rawEvent.timeStamp;

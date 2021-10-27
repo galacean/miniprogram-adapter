@@ -90,6 +90,7 @@ function registerCanvas2D(ctx, id: string = "canvas2D") {
 
 /** 注册小游戏 */
 function registerMiniGame() {
+  if (_isMiniGame) return;
   _isMiniGame = true;
 
   for (const key in $window) {
