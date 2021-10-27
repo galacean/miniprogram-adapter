@@ -1,11 +1,17 @@
-import { getCanvas } from "./register";
+import { getCanvas, isMiniGame } from "./register";
 import * as Mixin from "./util/mixin";
+
+declare let my: any;
 
 export class Image {
   constructor() {
-    let canvas = getCanvas();
-
-    const image = (canvas.createImage && canvas.createImage()) || {};
+    let image;
+    if (isMiniGame()) {
+      image = my.createImage();
+    } else {
+      const canvas = getCanvas();
+      image = (canvas.createImage && canvas.createImage()) || {};
+    }
 
     if (!("tagName" in image)) {
       image.tagName = "IMG";
