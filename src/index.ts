@@ -44,6 +44,7 @@ const window = {
   XMLHttpRequest,
   performance,
   URL,
+  WebGLRenderingContext,
   WebGL2RenderingContext,
   addEventListener(type, listener, options = {}) {
     document.addEventListener(type, listener, options);
@@ -86,8 +87,9 @@ export {
   ImageData,
   location
 };
-export { window as $window, document as $document, XMLHttpRequest as $XMLHttpRequest, location as $location };
 
-export { registerCanvas, registerCanvas2D } from "./register";
+export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
+
+export { window as $window, document as $document, XMLHttpRequest as $XMLHttpRequest, location as $location };
 
 export * from "./EventIniter/index";
