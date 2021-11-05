@@ -1,8 +1,10 @@
+import { Event } from "./Event";
 import { HTMLElement } from "./HTMLElement";
 import { HTMLVideoElement } from "./HTMLVideoElement";
 import { Image } from "./Image";
-import { getCanvas, getCanvas2D } from "./register";
-import { Event } from "./Event";
+import { getCanvas, getCanvas2D, isMiniGame } from "./register";
+
+declare let my: any;
 
 class Body extends HTMLElement {
   constructor() {
@@ -66,7 +68,23 @@ export const document = {
   createElement(tagName) {
     tagName = tagName.toLowerCase();
     if (tagName === "canvas") {
-      return getCanvas();
+      const originCanvas = getCanvas();
+      if (isMiniGame()) {
+        const canvas = my.createCanvas();
+        // 小游戏适配
+        canvas.addEventListener = function (type, listener, options = {}) {
+          document.addEventListener(type, listener, options);
+        };
+        canvas.removeEventListener = function (type, listener) {
+          document.removeEventListener(type, listener);
+        };
+        canvas.dispatchEvent = function (event: any) {
+          document.dispatchEvent(event);
+        };
+        return canvas;
+      } else {
+        return originCanvas;
+      }
     } else if (tagName === "img") {
       return new Image();
     } else if (tagName === "video") {

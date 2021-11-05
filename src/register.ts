@@ -1,4 +1,3 @@
-import devicePixelRatio from "./devicePixelRatio";
 import { document } from "./document";
 import { dispatchTouchCancel, dispatchTouchEnd, dispatchTouchMove, dispatchTouchStart } from "./EventIniter/TouchEvent";
 import { $window } from "./index";
@@ -28,6 +27,15 @@ function registerCanvas(c, id: string = "canvas") {
   Mixin.clientRegion(canvas);
   Mixin.offsetRegion(canvas);
 
+  const originGetContext = canvas.getContext.bind(canvas);
+  canvas.getContext = function (type) {
+    if (type === "2d") {
+      return canvas2D.getContext(type);
+    } else {
+      return originGetContext(type);
+    }
+  };
+
   canvas.focus = function () {};
   canvas.blur = function () {};
 
@@ -45,21 +53,15 @@ function registerCanvas(c, id: string = "canvas") {
 }
 
 /**异步注册2Dcanvas*/
-function registerCanvas2D(ctx, id: string = "canvas2D") {
-  const width = 1024;
-  const height = 1024;
-  canvas2D = {
-    width,
-    height,
-    clientWidth: width / devicePixelRatio,
-    clientHeight: height / devicePixelRatio,
-    id,
-    type: "canvas"
-  };
+function registerCanvas2D(c, id: string = "canvas2D") {
+  canvas2D = c;
+  canvas2D.id = id;
 
   if (!("tagName" in canvas2D)) {
     canvas2D.tagName = "CANVAS";
   }
+
+  canvas2D.type = "canvas";
 
   Mixin.parentNode(canvas2D);
   Mixin.style(canvas2D);
@@ -67,11 +69,6 @@ function registerCanvas2D(ctx, id: string = "canvas2D") {
   Mixin.clientRegion(canvas2D);
   Mixin.offsetRegion(canvas2D);
 
-  canvas2D.getContext = function (type) {
-    if (type === "2d") {
-      return ctx;
-    }
-  };
   canvas2D.focus = function () {};
   canvas2D.blur = function () {};
 
