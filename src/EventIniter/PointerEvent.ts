@@ -5,7 +5,8 @@ import { document } from "../document";
 class PointerEvent extends Event {
   buttons: number;
   which: number;
-
+  offsetX: number;
+  offsetY: number;
   pointerId: number;
   bubbles: boolean;
   button: number;
@@ -100,44 +101,28 @@ const CLONE_DEFAULTS = [
 
 const POINTER_TYPE = "touch";
 
-function touchToPointer(type, touch, rawEvent) {
-  const e = new PointerEvent(type);
-
-  for (let i = 0; i < CLONE_PROPS.length; i++) {
-    const p = CLONE_PROPS[i];
+function touchToPointer(type, touch) {
+  var e = new PointerEvent(type);
+  for (var i = 0; i < CLONE_PROPS.length; i++) {
+    var p = CLONE_PROPS[i];
     e[p] = touch[p] || CLONE_DEFAULTS[i];
   }
-
   e.type = type;
   e.target = getCanvas();
   e.currentTarget = getCanvas();
   e.buttons = typeToButtons(type);
   e.which = e.buttons;
-
   e.pointerId = (touch.identifier || 0) + 2;
   e.bubbles = true;
-  e.cancelable = true;
-  // e.detail = this.clickCount;
+  e.cancelable = true; // e.detail = this.clickCount;
   e.button = 0;
-
   e.width = (touch.radiusX || 0.5) * 2;
   e.height = (touch.radiusY || 0.5) * 2;
   e.pressure = touch.force || 0.5;
   e.isPrimary = isPrimaryPointer(touch);
-  e.pointerType = POINTER_TYPE;
-
-  // forward modifier keys
-  e.altKey = rawEvent.altKey;
-  e.ctrlKey = rawEvent.ctrlKey;
-  e.metaKey = rawEvent.metaKey;
-  e.shiftKey = rawEvent.shiftKey;
-
-  if (rawEvent.preventDefault) {
-    e.preventDefault = function () {
-      rawEvent.preventDefault();
-    };
-  }
-
+  e.pointerType = POINTER_TYPE; // forward modifier keys
+  e.offsetX = touch.pageX | touch.x;
+  e.offsetY = touch.pageY | touch.y;
   return e;
 }
 
@@ -169,19 +154,28 @@ function removePrimaryPointer(touch) {
 
 function eventHandlerFactory(type) {
   return (rawEvent) => {
-    const changedTouches = rawEvent.changedTouches;
-
+    const changedTouches = rawEvent.changedTouches || rawEvent.touches;
     for (let i = 0; i < changedTouches.length; i++) {
       const touch = changedTouches[i];
-
-      if (i === 0 && type === "pointerdown") {
-        setPrimaryPointer(touch);
-      } else if (type === "pointerup" || type === "pointercancel") {
-        removePrimaryPointer(touch);
+      switch (type) {
+        case "pointerdown":
+          i === 0 && setPrimaryPointer(touch);
+          document.dispatchEvent(touchToPointer(type, touch));
+          break;
+        case "pointermove":
+          document.dispatchEvent(touchToPointer(type, touch));
+        case "pointerup":
+          removePrimaryPointer(touch);
+          document.dispatchEvent(touchToPointer(type, touch));
+          document.dispatchEvent(touchToPointer("pointerout", touch));
+          break;
+        case "pointerout":
+          removePrimaryPointer(touch);
+          document.dispatchEvent(touchToPointer(type, touch));
+          break;
+        default:
+          break;
       }
-
-      const event = touchToPointer(type, touch, rawEvent);
-      document.dispatchEvent(event);
     }
   };
 }
@@ -189,4 +183,5 @@ function eventHandlerFactory(type) {
 let dispatchPointerDown = eventHandlerFactory("pointerdown");
 let dispatchPointerMove = eventHandlerFactory("pointermove");
 let dispatchPointerUp = eventHandlerFactory("pointerup");
-export { dispatchPointerDown, dispatchPointerMove, dispatchPointerUp };
+let dispatchPointerOut = eventHandlerFactory("pointerout");
+export { dispatchPointerDown, dispatchPointerMove, dispatchPointerUp, dispatchPointerOut };
