@@ -121,8 +121,8 @@ function touchToPointer(type, touch) {
   e.pressure = touch.force || 0.5;
   e.isPrimary = isPrimaryPointer(touch);
   e.pointerType = POINTER_TYPE; // forward modifier keys
-  e.offsetX = touch.pageX | touch.x;
-  e.offsetY = touch.pageY | touch.y;
+  e.offsetX = touch.pageX || touch.x;
+  e.offsetY = touch.pageY || touch.y;
   return e;
 }
 
