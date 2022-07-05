@@ -164,6 +164,7 @@ function eventHandlerFactory(type) {
           break;
         case "pointermove":
           document.dispatchEvent(touchToPointer(type, touch));
+          break;
         case "pointerup":
           removePrimaryPointer(touch);
           document.dispatchEvent(touchToPointer(type, touch));
