@@ -82,7 +82,7 @@ export const document = {
         };
         return canvas;
       } else {
-        return getCanvas();
+        return my.createOffscreenCanvas();
       }
     } else if (tagName === "img") {
       return new Image();
