@@ -1,4 +1,5 @@
 import { atob, btoa } from "./atob";
+import { Blob } from "./blob";
 import devicePixelRatio from "./devicePixelRatio";
 import { document } from "./document";
 import { Element } from "./Element";
@@ -9,18 +10,18 @@ import { HTMLElement } from "./HTMLElement";
 import { HTMLMediaElement } from "./HTMLMediaElement";
 import { HTMLVideoElement } from "./HTMLVideoElement";
 import { Image } from "./Image";
-import { navigator } from "./navigator";
-import { Node } from "./Node";
-import { requestAnimationFrame, cancelAnimationFrame } from "./requestAnimationFrame";
-import { screen } from "./screen";
-import { XMLHttpRequest } from "./XMLHttpRequest";
-import { performance } from "./performance";
-import { WebGL2RenderingContext } from "./WebGL2";
-import { WebGLRenderingContext } from "./WebGL";
-import { URL } from "./url";
-import { Blob } from "./blob";
 import { ImageData } from "./ImageData";
 import { location } from "./location";
+import { navigator } from "./navigator";
+import { Node } from "./Node";
+import { OffscreenCanvas } from "./OffscreenCanvas";
+import { performance } from "./performance";
+import { cancelAnimationFrame, requestAnimationFrame } from "./requestAnimationFrame";
+import { screen } from "./screen";
+import { URL } from "./url";
+import { WebGLRenderingContext } from "./WebGL";
+import { WebGL2RenderingContext } from "./WebGL2";
+import { XMLHttpRequest } from "./XMLHttpRequest";
 
 const window = {
   atob,
@@ -46,6 +47,7 @@ const window = {
   URL,
   WebGLRenderingContext,
   WebGL2RenderingContext,
+  OffscreenCanvas,
   addEventListener(type, listener, options = {}) {
     document.addEventListener(type, listener, options);
   },
@@ -59,6 +61,8 @@ const window = {
   innerHeight: screen.availHeight
 };
 
+export * from "./EventIniter/index";
+export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
 export {
   btoa,
   URL,
@@ -85,11 +89,7 @@ export {
   WebGLRenderingContext,
   WebGL2RenderingContext,
   ImageData,
-  location
+  location,
+  OffscreenCanvas
 };
-
-export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
-
 export { window as $window, document as $document, XMLHttpRequest as $XMLHttpRequest, location as $location };
-
-export * from "./EventIniter/index";
