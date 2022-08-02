@@ -27,15 +27,6 @@ function registerCanvas(c, id: string = "canvas") {
   Mixin.clientRegion(canvas);
   Mixin.offsetRegion(canvas);
 
-  const originGetContext = canvas.getContext.bind(canvas);
-  canvas.getContext = function (type) {
-    if (type === "2d") {
-      return canvas2D.getContext(type);
-    } else {
-      return originGetContext(type);
-    }
-  };
-
   canvas.focus = function () {};
   canvas.blur = function () {};
 

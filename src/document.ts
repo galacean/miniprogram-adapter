@@ -68,7 +68,6 @@ export const document = {
   createElement(tagName) {
     tagName = tagName.toLowerCase();
     if (tagName === "canvas") {
-      const originCanvas = getCanvas();
       if (isMiniGame()) {
         const canvas = my.createCanvas();
         // 小游戏适配
@@ -83,7 +82,7 @@ export const document = {
         };
         return canvas;
       } else {
-        return originCanvas;
+        return my.createOffscreenCanvas();
       }
     } else if (tagName === "img") {
       return new Image();
