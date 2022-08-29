@@ -1,1 +1,3 @@
-export class HTMLCanvasElement extends Object {}
+import { HTMLElement } from ".";
+
+export class HTMLCanvasElement extends HTMLElement {}
