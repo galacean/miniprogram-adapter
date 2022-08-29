@@ -4,8 +4,6 @@ import { Element } from "./Element";
 function noop() {}
 
 export class HTMLElement extends Element {
-  className: string;
-  children: Array<any>;
   focus: any;
   blur: any;
   insertBefore: any;
