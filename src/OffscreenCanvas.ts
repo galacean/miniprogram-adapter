@@ -1,1 +1,1 @@
-export const OffscreenCanvas = Object;
+export class OffscreenCanvas extends Object {}

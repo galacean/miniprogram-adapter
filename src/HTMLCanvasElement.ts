@@ -1,1 +1,1 @@
-export const HTMLCanvasElement = Object;
+export class HTMLCanvasElement extends Object {}
