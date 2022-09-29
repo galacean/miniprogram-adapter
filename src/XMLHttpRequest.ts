@@ -181,6 +181,7 @@ export class XMLHttpRequest extends EventTarget {
       };
 
       let requestTask = my.request({
+        enableCCDNCache: true,
         data,
         url,
         method: this._method,
