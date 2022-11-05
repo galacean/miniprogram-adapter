@@ -180,12 +180,16 @@ export class XMLHttpRequest extends EventTarget {
         _triggerEvent.call(this, "loadend");
       };
 
+      if (!this.timeout || this.timeout === Infinity) {
+        this.timeout = 30000;
+      }
+
       let requestTask = my.request({
         enableCCDNCache: true,
         data,
         url,
         method: this._method,
-        timeout: this.timeout ? this.timeout : 30000,
+        timeout: this.timeout,
         headers: header,
         dataType: responseType,
         success: onSuccess,
