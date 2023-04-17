@@ -1,6 +1,6 @@
 {
-  "name": "@oasis-engine/miniprogram-adapter",
-  "version": "0.3.9",
+  "name": "@galacean/engine-miniprogram-adapter",
+  "version": "0.0.1",
   "description": "adapter of miniprogram",
   "keywords": [
     "webgl",

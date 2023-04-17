@@ -38,7 +38,7 @@
 import inject from 'rollup-plugin-inject';
 import modify from 'rollup-plugin-modify';
 
-const module = '@oasis-engine/miniprogram-adapter';
+const module = '@galacean/engine-miniprogram-adapter';
 
 function register(name) {
   return [module, name];
@@ -74,8 +74,8 @@ adapterArray.forEach(name => {
 export default [
   inject(adapterVars),
   modify({
-    find: /@oasis-engine\/([\w-]*)/g,
-    replace: (match, moduleName) => `@oasis-engine/${moduleName}/dist/miniprogram`
+    find: /@galacean\/([\w-]*)/g,
+    replace: (match, moduleName) => `@galacean/${moduleName}/dist/miniprogram`
   }),
 ];
 ```
