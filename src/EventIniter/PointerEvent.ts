@@ -166,11 +166,10 @@ function eventHandlerFactory(type) {
           document.dispatchEvent(touchToPointer(type, touch));
           break;
         case "pointerup":
-          removePrimaryPointer(touch);
           document.dispatchEvent(touchToPointer(type, touch));
-          document.dispatchEvent(touchToPointer("pointerout", touch));
           break;
-        case "pointerout":
+        case "pointerleave":
+        case "pointercancel":
           removePrimaryPointer(touch);
           document.dispatchEvent(touchToPointer(type, touch));
           break;
@@ -184,5 +183,6 @@ function eventHandlerFactory(type) {
 let dispatchPointerDown = eventHandlerFactory("pointerdown");
 let dispatchPointerMove = eventHandlerFactory("pointermove");
 let dispatchPointerUp = eventHandlerFactory("pointerup");
-let dispatchPointerOut = eventHandlerFactory("pointerout");
-export { dispatchPointerDown, dispatchPointerMove, dispatchPointerUp, dispatchPointerOut };
+let dispatchPointerLeave = eventHandlerFactory("pointerleave");
+let dispatchPointerCancel = eventHandlerFactory("pointercancel");
+export { dispatchPointerDown, dispatchPointerMove, dispatchPointerUp, dispatchPointerLeave, dispatchPointerCancel };
