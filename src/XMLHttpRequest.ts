@@ -1,4 +1,5 @@
 import EventTarget from "./EventTarget";
+import { atob } from "./atob";
 
 declare let my: any;
 const _requestHeader = new Map();
@@ -19,6 +20,10 @@ function _triggerEvent(type, event = { target: this }) {
 function _changeReadyState(readyState, event = { readyState }) {
   this.readyState = readyState;
   _triggerEvent.call(this, "readystatechange", event);
+}
+
+function isBase64(url) {
+  return /^data:(.+?);base64,/.test(url);
 }
 
 export class XMLHttpRequest extends EventTarget {
@@ -125,7 +130,15 @@ export class XMLHttpRequest extends EventTarget {
       delete this.response;
       this.response = null;
 
-      const onSuccess = ({ data, status, headers }) => {
+      const onSuccess = ({
+        data,
+        status,
+        headers
+      }: {
+        data: any;
+        status?: number;
+        headers?: Record<string, string>;
+      }) => {
         status = status === undefined ? 200 : status;
 
         try {
@@ -180,21 +193,33 @@ export class XMLHttpRequest extends EventTarget {
         _triggerEvent.call(this, "loadend");
       };
 
-      if (!this.timeout || this.timeout === Infinity) {
-        this.timeout = 30000;
-      }
+      if (isBase64(url)) {
+        try {
+          const base64Str = url.slice(13 + RegExp.$1.length);
+          const data = Uint8Array.from(atob(base64Str), (c) => c.charCodeAt(0));
+          setTimeout(() => {
+            onSuccess({ data: data.buffer, status: 200 });
+          });
+        } catch (e) {
+          onFail(e);
+        }
+      } else {
+        if (!this.timeout || this.timeout === Infinity) {
+          this.timeout = 30000;
+        }
 
-      let requestTask = my.request({
-        data,
-        url,
-        method: this._method,
-        timeout: this.timeout,
-        headers: header,
-        dataType: responseType,
-        success: onSuccess,
-        fail: onFail
-      });
-      _requestTask.set("requestTask", requestTask);
+        let requestTask = my.request({
+          data,
+          url,
+          method: this._method,
+          timeout: this.timeout,
+          headers: header,
+          dataType: responseType,
+          success: onSuccess,
+          fail: onFail
+        });
+        _requestTask.set("requestTask", requestTask);
+      }
     }
   }
 
