@@ -54,6 +54,11 @@ export class XMLHttpRequest extends EventTarget {
   _url: string;
   _method: string;
 
+  private static _requestParams = {};
+  static setParams(params: any) {
+    this._requestParams = params;
+  }
+
   constructor() {
     super();
 
@@ -216,7 +221,8 @@ export class XMLHttpRequest extends EventTarget {
           headers: header,
           dataType: responseType,
           success: onSuccess,
-          fail: onFail
+          fail: onFail,
+          ...XMLHttpRequest._requestParams
         });
         _requestTask.set("requestTask", requestTask);
       }
