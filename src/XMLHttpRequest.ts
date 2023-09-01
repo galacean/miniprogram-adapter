@@ -196,14 +196,16 @@ export class XMLHttpRequest extends EventTarget {
           onFail(e);
         }
       } else {
+        const readOptions: any = responseType === "arraybuffer" ? {} : { encoding: "utf8" };
+        readOptions.success = ({ data }) => {
+          data = responseType === "json" ? JSON.parse(data) : data;
+          onSuccess({ data });
+        };
+        readOptions.fail = onFail;
+        const fileSystem = my.getFileSystemManager();
         if (isRelativePath(url)) {
-          const fileSystem = my.getFileSystemManager();
-          fileSystem.readFile({
-            filePath: url,
-            encoding: responseType === "arraybuffer" ? "base64" : "utf8",
-            success: onSuccess,
-            fail: onFail
-          });
+          readOptions.filePath = url;
+          fileSystem.readFile(readOptions);
         } else {
           if (!this.timeout || this.timeout === Infinity) {
             this.timeout = 30000;
@@ -213,12 +215,8 @@ export class XMLHttpRequest extends EventTarget {
             header,
             timeout: this.timeout,
             success: ({ apFilePath }) => {
-              const fileSystem = my.getFileSystemManager();
-              fileSystem.readFile({
-                filePath: apFilePath,
-                encoding: responseType === "arraybuffer" ? "base64" : "utf8",
-                success: onSuccess
-              });
+              readOptions.filePath = apFilePath;
+              fileSystem.readFile(readOptions);
             },
             fail: onFail
           });
