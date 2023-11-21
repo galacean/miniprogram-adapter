@@ -19,6 +19,7 @@ import { performance } from "./performance";
 import { cancelAnimationFrame, requestAnimationFrame } from "./requestAnimationFrame";
 import { screen } from "./screen";
 import { URL } from "./url";
+import { URLSearchParams } from "./URLSearchParams";
 import { WebGLRenderingContext } from "./WebGL";
 import { WebGL2RenderingContext } from "./WebGL2";
 import { XMLHttpRequest } from "./XMLHttpRequest";
@@ -39,6 +40,7 @@ const window = {
   Image,
   navigator,
   Node,
+  URLSearchParams,
   requestAnimationFrame,
   cancelAnimationFrame,
   screen,
@@ -82,6 +84,7 @@ export {
   Image,
   navigator,
   Node,
+  URLSearchParams,
   requestAnimationFrame,
   cancelAnimationFrame,
   screen,
