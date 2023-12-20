@@ -61,8 +61,11 @@ const window = {
   },
   innerWidth: screen.availWidth,
   innerHeight: screen.availHeight,
-  setTimeout: setTimeout
+  setTimeout: setTimeout,
+  clearTimeout: clearTimeout,
 };
+
+
 
 export * from "./EventIniter/index";
 export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
