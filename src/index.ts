@@ -37,6 +37,7 @@ const window = {
   HTMLElement,
   HTMLMediaElement,
   HTMLVideoElement,
+  HTMLImageElement: Image,
   Image,
   navigator,
   Node,
@@ -70,12 +71,7 @@ const window = {
 export * from "./EventIniter/index";
 export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
 export {
-  btoa,
-  URL,
-  Blob,
-  window,
-  atob,
-  devicePixelRatio,
+  document as $document, location as $location, window as $window, XMLHttpRequest as $XMLHttpRequest, atob, Blob, btoa, cancelAnimationFrame, devicePixelRatio,
   document,
   Element,
   Event,
@@ -84,19 +80,8 @@ export {
   HTMLElement,
   HTMLMediaElement,
   HTMLVideoElement,
-  Image,
-  navigator,
-  Node,
-  URLSearchParams,
-  requestAnimationFrame,
-  cancelAnimationFrame,
-  screen,
-  XMLHttpRequest,
-  performance,
-  WebGLRenderingContext,
-  WebGL2RenderingContext,
-  ImageData,
-  location,
-  OffscreenCanvas
+  Image, ImageData,
+  location, navigator,
+  Node, OffscreenCanvas, performance, requestAnimationFrame, screen, URL, URLSearchParams, WebGL2RenderingContext, WebGLRenderingContext, window, XMLHttpRequest
 };
-export { window as $window, document as $document, XMLHttpRequest as $XMLHttpRequest, location as $location };
+
