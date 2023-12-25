@@ -25,5 +25,16 @@ jobs:
         run: pnpm build
 
       - uses: JS-DevTools/npm-publish@v3
+        id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Send notification to Dingding
+        if: ${{ steps.publish.outputs.type }}
+        uses: mrkou47/action-dingding-webhook@main
+        env:
+          DINGDING_SECRET: ${{ secrets.DINGDING_SECRET }}
+          DINGDING_ACCESS_TOKEN: ${{ secrets.DINGDING_ACCESS_TOKEN }}
+        with:
+          title: Release ${{ steps.publish.outputs.name }}
+          text: ${{ steps.publish.outputs.version }}
