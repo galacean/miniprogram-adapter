@@ -1,6 +1,6 @@
 {
   "name": "@galacean/engine-miniprogram-adapter",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "adapter of miniprogram",
   "keywords": [
     "webgl",

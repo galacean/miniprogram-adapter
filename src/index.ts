@@ -63,15 +63,21 @@ const window = {
   innerWidth: screen.availWidth,
   innerHeight: screen.availHeight,
   setTimeout: setTimeout,
-  clearTimeout: clearTimeout,
+  clearTimeout: clearTimeout
 };
-
-
 
 export * from "./EventIniter/index";
 export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
 export {
-  document as $document, location as $location, window as $window, XMLHttpRequest as $XMLHttpRequest, atob, Blob, btoa, cancelAnimationFrame, devicePixelRatio,
+  document as $document,
+  location as $location,
+  window as $window,
+  XMLHttpRequest as $XMLHttpRequest,
+  atob,
+  Blob,
+  btoa,
+  cancelAnimationFrame,
+  devicePixelRatio,
   document,
   Element,
   Event,
@@ -80,8 +86,20 @@ export {
   HTMLElement,
   HTMLMediaElement,
   HTMLVideoElement,
-  Image, ImageData,
-  location, navigator,
-  Node, OffscreenCanvas, performance, requestAnimationFrame, screen, URL, URLSearchParams, WebGL2RenderingContext, WebGLRenderingContext, window, XMLHttpRequest
+  Image as HTMLImageElement,
+  Image,
+  ImageData,
+  location,
+  navigator,
+  Node,
+  OffscreenCanvas,
+  performance,
+  requestAnimationFrame,
+  screen,
+  URL,
+  URLSearchParams,
+  WebGL2RenderingContext,
+  WebGLRenderingContext,
+  window,
+  XMLHttpRequest
 };
-
