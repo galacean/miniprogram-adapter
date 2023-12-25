@@ -37,4 +37,4 @@ jobs:
           DINGDING_ACCESS_TOKEN: ${{ secrets.DINGDING_ACCESS_TOKEN }}
         with:
           title: Release ${{ steps.publish.outputs.name }}
-          text: ${{ steps.publish.outputs.version }}
+          text: ${{ toJSON(steps.publish.outputs.version) }}
