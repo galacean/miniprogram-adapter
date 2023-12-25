@@ -1,6 +1,6 @@
 {
   "name": "@galacean/engine-miniprogram-adapter",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "adapter of miniprogram",
   "packageManager": "pnpm@8.6.2",
   "keywords": [
