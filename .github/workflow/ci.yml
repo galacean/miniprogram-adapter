@@ -1,0 +1,20 @@
+name: Npm Publish
+
+# 定义触发条件
+on:
+  push:
+    branches:
+      - main # 当main分支有push事件时触发
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest # 定义运行环境
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - run: npm build
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
