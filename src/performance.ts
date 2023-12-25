@@ -5,7 +5,7 @@ export class performance {
   static now() {
     return Date.now();
   }
- 
+
   static clearMarks() {}
   static clearMeasures() {}
   static clearResourceTimings() {}
