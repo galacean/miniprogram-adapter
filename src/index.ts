@@ -67,7 +67,7 @@ const window = {
 };
 
 export * from "./EventIniter/index";
-export { registerCanvas, registerCanvas2D, registerMiniGame } from "./register";
+export { registerCanvas, registerCanvas2D, registerMiniGame, registerResize } from "./register";
 export {
   document as $document,
   location as $location,

@@ -1,6 +1,6 @@
 import { document } from "./document";
 import { dispatchTouchCancel, dispatchTouchEnd, dispatchTouchMove, dispatchTouchStart } from "./EventIniter/TouchEvent";
-import { $window } from "./index";
+import { $window, Event, screen } from "./index";
 import * as Mixin from "./util/mixin";
 
 declare let my: any;
@@ -107,4 +107,39 @@ function getCanvas2D() {
   return canvas2D;
 }
 
-export { registerCanvas, registerCanvas2D, getCanvas, getCanvas2D, registerMiniGame, isMiniGame };
+/**
+ * 监听可渲染区域尺寸改变的回调
+ * 如：在 onCanvasReady 前后，windowWidth 和 windowHeight 可能会改变（导航栏的高度）
+ */
+function registerResize() {
+  // 获取页面宽高
+  const { screenWidth, screenHeight, windowWidth, windowHeight } = my.getSystemInfoSync();
+  screen.width = screenWidth;
+  screen.height = screenHeight;
+  screen.availWidth = $window.innerWidth = windowWidth;
+  screen.availHeight = $window.innerHeight = windowHeight;
+  updateCanvasSize(getCanvas(), windowWidth, windowHeight);
+  updateCanvasSize(getCanvas2D(), windowWidth, windowHeight);
+  $window.dispatchEvent(new Event("resize"));
+}
+
+function updateCanvasSize(canvas, width, height) {
+  if (!canvas) return;
+  const { style } = canvas;
+  if (style) {
+    style.width = width + "px";
+    style.height = height + "px";
+  }
+  try {
+    canvas.clientWidth = width;
+  } catch (error) {
+    // Only work in MiniProgram
+  }
+  try {
+    canvas.clientHeight = height;
+  } catch (error) {
+    // Only work in MiniProgram
+  }
+}
+
+export { registerCanvas, registerCanvas2D, registerResize, getCanvas, getCanvas2D, registerMiniGame, isMiniGame };
