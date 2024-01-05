@@ -1,6 +1,6 @@
 import { document } from "./document";
 import { dispatchTouchCancel, dispatchTouchEnd, dispatchTouchMove, dispatchTouchStart } from "./EventIniter/TouchEvent";
-import { $window } from "./index";
+import { $window, screen, window } from "./index";
 import * as Mixin from "./util/mixin";
 
 declare let my: any;
@@ -12,6 +12,7 @@ let _isMiniGame = false;
 
 /**异步注册3Dcanvas*/
 function registerCanvas(c, id: string = "canvas") {
+  updateSystemInfo();
   canvas = c;
   canvas.id = id;
 
@@ -45,6 +46,7 @@ function registerCanvas(c, id: string = "canvas") {
 
 /**异步注册2Dcanvas*/
 function registerCanvas2D(c, id: string = "canvas2D") {
+  updateSystemInfo();
   canvas2D = c;
   canvas2D.id = id;
 
@@ -105,6 +107,17 @@ function getCanvas() {
 /**异步获取2Dcanvas*/
 function getCanvas2D() {
   return canvas2D;
+}
+
+/**
+ * 在 onCanvasReady 前后，windowWidth 和 windowHeight 可能会改变（导航栏的高度）
+ */
+function updateSystemInfo() {
+  const { screenWidth, screenHeight, windowWidth, windowHeight } = my.getSystemInfoSync();
+  screen.width = screenWidth;
+  screen.height = screenHeight;
+  screen.availWidth = window.innerWidth = windowWidth;
+  screen.availHeight = window.innerHeight = windowHeight;
 }
 
 export { registerCanvas, registerCanvas2D, getCanvas, getCanvas2D, registerMiniGame, isMiniGame };
