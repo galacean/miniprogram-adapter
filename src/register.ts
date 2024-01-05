@@ -1,6 +1,6 @@
 import { document } from "./document";
 import { dispatchTouchCancel, dispatchTouchEnd, dispatchTouchMove, dispatchTouchStart } from "./EventIniter/TouchEvent";
-import { $window, Event, screen, window } from "./index";
+import { $window, Event, screen } from "./index";
 import * as Mixin from "./util/mixin";
 
 declare let my: any;
@@ -116,11 +116,11 @@ function registerResize() {
   const { screenWidth, screenHeight, windowWidth, windowHeight } = my.getSystemInfoSync();
   screen.width = screenWidth;
   screen.height = screenHeight;
-  screen.availWidth = window.innerWidth = windowWidth;
-  screen.availHeight = window.innerHeight = windowHeight;
+  screen.availWidth = $window.innerWidth = windowWidth;
+  screen.availHeight = $window.innerHeight = windowHeight;
   updateCanvasSize(getCanvas(), windowWidth, windowHeight);
   updateCanvasSize(getCanvas2D(), windowWidth, windowHeight);
-  window.dispatchEvent(new Event("resize"));
+  $window.dispatchEvent(new Event("resize"));
 }
 
 function updateCanvasSize(canvas, width, height) {
