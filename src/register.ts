@@ -1,6 +1,6 @@
 import { document } from "./document";
 import { dispatchTouchCancel, dispatchTouchEnd, dispatchTouchMove, dispatchTouchStart } from "./EventIniter/TouchEvent";
-import { $window, screen, window } from "./index";
+import { $window, Event, screen, window } from "./index";
 import * as Mixin from "./util/mixin";
 
 declare let my: any;
@@ -12,7 +12,6 @@ let _isMiniGame = false;
 
 /**异步注册3Dcanvas*/
 function registerCanvas(c, id: string = "canvas") {
-  updateSystemInfo();
   canvas = c;
   canvas.id = id;
 
@@ -46,7 +45,6 @@ function registerCanvas(c, id: string = "canvas") {
 
 /**异步注册2Dcanvas*/
 function registerCanvas2D(c, id: string = "canvas2D") {
-  updateSystemInfo();
   canvas2D = c;
   canvas2D.id = id;
 
@@ -110,14 +108,38 @@ function getCanvas2D() {
 }
 
 /**
- * 在 onCanvasReady 前后，windowWidth 和 windowHeight 可能会改变（导航栏的高度）
+ * 监听可渲染区域尺寸改变的回调
+ * 如：在 onCanvasReady 前后，windowWidth 和 windowHeight 可能会改变（导航栏的高度）
  */
-function updateSystemInfo() {
+function registerResize() {
+  // 获取页面宽高
   const { screenWidth, screenHeight, windowWidth, windowHeight } = my.getSystemInfoSync();
   screen.width = screenWidth;
   screen.height = screenHeight;
   screen.availWidth = window.innerWidth = windowWidth;
   screen.availHeight = window.innerHeight = windowHeight;
+  updateCanvasSize(getCanvas(), windowWidth, windowHeight);
+  updateCanvasSize(getCanvas2D(), windowWidth, windowHeight);
+  window.dispatchEvent(new Event("resize"));
 }
 
-export { registerCanvas, registerCanvas2D, getCanvas, getCanvas2D, registerMiniGame, isMiniGame };
+function updateCanvasSize(canvas, width, height) {
+  if (!canvas) return;
+  const { style } = canvas;
+  if (style) {
+    style.width = width + "px";
+    style.height = height + "px";
+  }
+  try {
+    canvas.clientWidth = width;
+  } catch (error) {
+    // Only work in MiniProgram
+  }
+  try {
+    canvas.clientHeight = height;
+  } catch (error) {
+    // Only work in MiniProgram
+  }
+}
+
+export { registerCanvas, registerCanvas2D, registerResize, getCanvas, getCanvas2D, registerMiniGame, isMiniGame };
