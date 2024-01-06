@@ -22,6 +22,10 @@ function _changeReadyState(readyState, event = { readyState }) {
   _triggerEvent.call(this, "readystatechange", event);
 }
 
+function isRelativePath(url) {
+  return !/^(http|https|ftp|file):\/\/.*/i.test(url);
+}
+
 function isBase64(url) {
   return /^data:(.+?);base64,/.test(url);
 }
@@ -121,6 +125,7 @@ export class XMLHttpRequest extends EventTarget {
   overrideMimeType() {}
 
   send(data = "") {
+    console.log("request" + this._url);
     if (this.readyState !== XMLHttpRequest.OPENED) {
       throw new Error("Failed to execute 'send' on 'XMLHttpRequest': The object's state must be OPENED.");
     } else {
@@ -135,27 +140,8 @@ export class XMLHttpRequest extends EventTarget {
       delete this.response;
       this.response = null;
 
-      const onSuccess = ({
-        data,
-        status,
-        headers
-      }: {
-        data: any;
-        status?: number;
-        headers?: Record<string, string>;
-      }) => {
-        status = status === undefined ? 200 : status;
-
-        try {
-          if (data == null || (data instanceof ArrayBuffer && data.byteLength == 0)) {
-            status = 404;
-          }
-        } catch (e) {}
-
-        this.status = status;
-        if (headers) {
-          _responseHeader.set("responseHeader", headers);
-        }
+      const onSuccess = ({ data }) => {
+        this.status = 200;
         _triggerEvent.call(this, "loadstart");
         _changeReadyState.call(this, XMLHttpRequest.HEADERS_RECEIVED);
         _changeReadyState.call(this, XMLHttpRequest.LOADING);
@@ -181,6 +167,7 @@ export class XMLHttpRequest extends EventTarget {
       };
 
       const onFail = (e) => {
+        console.log("request fail" + e);
         const errMsg = e.message || e.errorMessage;
         // TODO 规范错误
         if (!errMsg) {
@@ -203,28 +190,38 @@ export class XMLHttpRequest extends EventTarget {
           const base64Str = url.slice(13 + RegExp.$1.length);
           const data = Uint8Array.from(atob(base64Str), (c) => c.charCodeAt(0));
           setTimeout(() => {
-            onSuccess({ data: data.buffer, status: 200 });
+            onSuccess({ data: data.buffer });
           });
         } catch (e) {
           onFail(e);
         }
       } else {
-        if (!this.timeout || this.timeout === Infinity) {
-          this.timeout = 30000;
+        const readOptions: any = responseType === "arraybuffer" ? {} : { encoding: "utf8" };
+        readOptions.success = ({ data }) => {
+          data = responseType === "json" ? JSON.parse(data) : data;
+          onSuccess({ data });
+        };
+        readOptions.fail = onFail;
+        const fileSystem = my.getFileSystemManager();
+        if (isRelativePath(url)) {
+          readOptions.filePath = url;
+          fileSystem.readFile(readOptions);
+        } else {
+          if (!this.timeout || this.timeout === Infinity) {
+            this.timeout = 30000;
+          }
+          let requestTask = my.downloadFile({
+            url,
+            header,
+            timeout: this.timeout,
+            success: ({ apFilePath }) => {
+              readOptions.filePath = apFilePath;
+              fileSystem.readFile(readOptions);
+            },
+            fail: onFail
+          });
+          _requestTask.set("requestTask", requestTask);
         }
-
-        let requestTask = my.request({
-          data,
-          url,
-          method: this._method,
-          timeout: this.timeout,
-          headers: header,
-          dataType: responseType,
-          success: onSuccess,
-          fail: onFail,
-          ...XMLHttpRequest._requestParams
-        });
-        _requestTask.set("requestTask", requestTask);
       }
     }
   }
