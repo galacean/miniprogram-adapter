@@ -1,5 +1,6 @@
 import EventTarget from "./EventTarget";
 import { atob } from "./atob";
+import { Blob } from "./blob";
 
 declare let my: any;
 const _requestHeader = new Map();
@@ -172,6 +173,9 @@ export class XMLHttpRequest extends EventTarget {
               throw "InvalidStateError : responseType is " + this._responseType;
             }
           });
+          if (responseType === "blob") {
+            this.response = new Blob([<ArrayBuffer>this.response], { type: "image/png" });
+          }
         } else {
           this.responseText = data;
         }
@@ -219,7 +223,7 @@ export class XMLHttpRequest extends EventTarget {
           method: this._method,
           timeout: this.timeout,
           headers: header,
-          dataType: responseType,
+          dataType: responseType === "blob" ? "arraybuffer" : responseType,
           success: onSuccess,
           fail: onFail,
           ...XMLHttpRequest._requestParams
