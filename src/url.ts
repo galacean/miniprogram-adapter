@@ -14,6 +14,10 @@ export class URL {
     return prefix + base64;
   }
 
+  static revokeObjectURL(url: string) {
+    // Do nothing
+  }
+
   public href: string;
 
   // todo: 完善URL对象
